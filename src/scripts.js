@@ -83,7 +83,11 @@ for (let i = 1; i <= 24; i++) {
 
 // Function to open the book and display the image and quote for the selected day
 function openBook(day) {
-    dateDisplay.textContent = `December ${day}`;
+    // Clear the date display on the front page
+    dateDisplay.textContent = ''; // Clear the date display
+
+    // Set the date display for the back page
+    const backDateDisplay = `December ${day}`;
     quoteDisplay.textContent = quotes[day - 1]; // Get the quote for the selected day
     christmasImage.src = imagePaths[day - 1]; // Get the image for the selected day
 
