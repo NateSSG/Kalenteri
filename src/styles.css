@@ -1,0 +1,194 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #952222;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+/* Book Container */
+.book-container {
+    perspective: 1500px;
+    position: relative;
+    margin-bottom: 20px; /* Space between the book and the random image */
+    display: flex;
+    flex-direction: column; /* Stack book and random image vertically */
+    align-items: center; /* Center everything horizontally */
+    z-index: 3;
+}
+
+/* Book Styling */
+.book {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    transform-style: preserve-3d;
+    transform-origin: left;
+    transition: transform 1s ease-in-out; /* Animation for book flip */
+    cursor: pointer;
+    border: 10px solid #367906; /* Border color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    z-index: 2;
+}
+
+/* Animation when clicked */
+.book.clicked {
+    transform: rotateY(-120deg); /* Flip effect */
+}
+
+/* Page Styling */
+.page {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background: #fff;
+    border: 2px solid #ccc;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px; /* Rounded corners for pages */
+}
+
+.page.front {
+    background: #f9f9f9;
+    background-image: url('images/decor.png');
+    background-size: 150%;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.page.back {
+    transform: rotateY(180deg);
+    background: #e8eaf6;
+    background-image: url('images/decor.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+/* Content inside the page */
+.content {
+    font-size: 1.2rem;
+    padding: 20px;
+}
+
+/* Background Image (front page) */
+.background-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+    border-radius: 5px;
+}
+
+/* Random Image Container */
+.random-image-container {
+    position: absolute; /* Position relative to the book-container */
+    top: 0; /* Place it at the top */
+    left: 0;
+    width: 400px;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+   background-color: #f9f9f9;
+    z-index: 0;
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Optional: shadow for depth */
+    opacity: 1; /* Make the image visible */
+    transition: none; /* Remove transition effect */
+}
+
+
+.random-image-container.visible {
+    opacity: 1; /* Show when visible */
+    top: 0; /* Move up to be within the book container */
+}
+
+.random-image {
+    width: 95%; /* Set width to 90% of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.random-image.visible {
+    opacity: 1;
+}
+
+/* Snow Effect Canvas */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Styling for the title */
+.h1 {
+    padding-bottom: 20px;
+    animation: colorChange 2s infinite; /* Change color every 2 seconds */
+}
+
+@keyframes colorChange {
+    0% {
+        color: green;
+    }
+    50% {
+        color: yellow;
+    }
+    100% {
+        color: green;
+    }
+}
+
+.day-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 70px;
+}
+
+.day {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background-color: #fff;
+    border: 2px solid #367906;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #367906;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #e0e0e0;
+}
+
+.day.disabled {
+    background-color: #ccc; /* Light gray background for disabled days */
+    color: #666; /* Darker gray text for disabled days */
+    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}
