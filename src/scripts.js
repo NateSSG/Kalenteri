@@ -112,3 +112,16 @@ function openBook(day) {
         }, 380); // 100ms delay for the transition to be visible
     }
 }
+
+// Add event listener to the document to close the book when clicking anywhere
+document.addEventListener('click', (event) => {
+    const book = document.querySelector('.book');
+    // Check if the book is open
+    if (book.classList.contains('clicked')) {
+        // Check if the click was outside the book
+        if (!book.contains(event.target)) {
+            book.classList.remove('clicked'); // Close the book
+            randomImageContainer.innerHTML = ''; // Clear the random image container
+        }
+    }
+});
